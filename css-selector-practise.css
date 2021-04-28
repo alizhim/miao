@@ -1,0 +1,48 @@
+p.one {
+  color: red;
+}
+p.a:hover {
+  color: red;
+}
+p.a:focus {
+  color: blue;
+}
+p.a:active {
+  color:green;
+}
+span.one{
+  color: red;
+}
+span.two{
+  color: green;
+}
+span.three{
+  color: blue;
+}
+a:link {
+  color: pink;
+}
+a:visited {
+  color: orange;
+}
+a.mail {
+  color: blue;
+}
+a.tel {
+  color: yellow;
+}
+a.pdf {
+  font-size: 30px;
+}
+div.a li:nth-child(n+4):nth-child(-n+8){
+  color: red;
+}
+div.b li:nth-child(-n+26) {
+  color: red;
+}
+div.b li:nth-child(n+65) {
+  color: green;
+}
+div.b li:nth-child(n+35):nth-child(-n+51){
+  color: blue;
+}
