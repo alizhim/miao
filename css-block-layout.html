@@ -27,7 +27,7 @@
   }
   .p3 {
     width: 600px;
-    margin: auto;
+    margin: 0 auto;
     border: 1px dotted transparent;
     border-bottom-color: black;
   }
@@ -35,6 +35,32 @@
     background-color: plum;
     text-align: center;
     margin-top: 20px;
+  }
+  .box3 {
+    width: 600px;
+    margin: auto;
+  }
+  .box3 div {
+    width: 180px;
+    height: 35px;
+    background-color: pink;
+    border: 3px solid black;
+    text-align: center;
+    line-height: 35px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+   .box3 div:nth-child(n+5) {
+    margin-left: 200px;
+  }
+  .box3 div:nth-child(n+9) {
+    margin-left: 400px;
+  }
+  .box3 div:nth-child(4n+5) {
+    margin-top: -244px;
+  }
+  .box3 div:hover {
+    background-color: red;
   }
   </style>
 </head>
@@ -50,10 +76,18 @@
     </p>
   </div>
   <div class="box3">
-<span>宽180高40(包含边框)</span> <span>产品</span> <span>产品</span>
-<span>水平间隙30px</span> <span>产品</span> <span>产品</span>
-<span>垂直间隙15px</span> <span>产品</span> <span>产品</span>
-<span>边框宽度3px</span> <span>产品</span> <span>产品</span>
+     <div>宽180高40(包含边框)</div>
+     <div>水平间隙30px</div>
+     <div>垂直间隙15px</div>
+     <div>边框宽度3px</div>
+     <div>产品</div>
+     <div>产品</div>
+     <div>产品</div>
+     <div>产品</div>
+     <div>产品</div>
+     <div>产品</div>
+     <div>产品</div>
+     <div>产品</div>
   </div>
   <div class="box4">
     <p class="p3">link</p>
