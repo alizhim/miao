@@ -6,55 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
+    body,html {
       height: 100%;
     }
-    div {
+    body{
+      margin: 0;
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      height: 100%;
+      flex-flow: wrap;
+      align-content: stretch;
     }
     header {
-      width: 100%;
-      height: 60px;
+      height: 65px;
       background-color: chartreuse;
-      border-bottom: 3px solid black;
-      box-sizing: border-box;
+      flex-basis: 100%;
+      flex-grow: 1;
     }
     aside {
-      width: 30%;
-      height: calc(100% - 60px);
+      width: 200px;
+      height: calc(100% - 65px);
       background-color: cadetblue;
-      border-right: 3px solid black;
-      box-sizing: border-box;
     }
     main {
-      width: 70%;
+      flex-grow: 1;
       background-color: chocolate;
-      height: calc(100% - 60px);
       overflow: scroll;
     }
   </style>
 </head>
 <body>
-  <div>
     <header>QQ-MAIL-POSITION</header>
-    <aside></aside>
+    <aside>aside</aside>
     <main>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit modi fuga, iusto tempore neque dolorem qui officiis voluptas cumque, alias dolore assumenda nulla. Error illum facilis debitis ipsam porro rerum!
-      Eveniet, ab asperiores laudantium nulla consequuntur aspernatur quos saepe tempora quidem voluptas corporis esse velit molestiae laborum accusantium ratione id quibusdam soluta fugit iusto nostrum nisi obcaecati. Delectus, sit odit!
-      Doloremque officia harum placeat ducimus illum aut quidem cupiditate? Esse neque saepe doloremque dolorem amet earum atque ullam eaque accusamus harum maxime dolorum dolor mollitia, animi nihil at fugiat praesentium?
-      Fuga beatae illum harum numquam sed iste facilis mollitia alias! Optio, tempora nihil deserunt facere velit necessitatibus quibusdam! Sint quos nostrum architecto mollitia laboriosam, laborum fugiat commodi. Unde, officiis esse!
-      Laboriosam laborum ipsa magni distinctio, consectetur officiis obcaecati accusamus enim saepe, at soluta quod quas aspernatur? Eveniet dolore velit necessitatibus id, ratione quibusdam ipsa eos ab, ut animi, impedit atque!
-      Odio laboriosam a, corrupti cum perferendis ullam unde recusandae accusamus inventore nam adipisci maxime beatae aut dolores eveniet sed molestiae quos nobis voluptatem facere! Omnis similique dolores iure ipsum dolorum.
-      Est repellendus saepe ipsa totam odit, veniam eum reiciendis rem fugiat aliquam possimus dicta voluptatum iure optio corporis voluptas eligendi maxime. Commodi illo saepe illum perspiciatis iusto quia necessitatibus nihil.
-      Cupiditate commodi nulla asperiores. Hic eum esse error a cum fuga exercitationem minus, quaerat incidunt ex sed quisquam iure quam odio voluptate itaque aspernatur sit quod mollitia nostrum nemo beatae?
-      Quis laboriosam, voluptate facere corrupti nobis id obcaecati tempora minima! Illum ipsam et obcaecati hic, culpa quia ullam alias odio odit a nulla blanditiis, quos, repellat modi optio temporibus accusantium?
-      Commodi delectus, tempora voluptas unde impedit asperiores, perspiciatis repudiandae odit ipsam, eaque nulla quam magni. Unde molestias itaque dolor illum, cupiditate quia dolore sed doloremque excepturi perferendis incidunt dolorem sunt!
     </main>
-  </div>
 </body>
 </html>
