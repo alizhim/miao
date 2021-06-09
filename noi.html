@@ -217,13 +217,15 @@ console.log(a)
 </script>
 
 
-<script id="ch0104/04" type="?">
-  var a = Number(prompt('请输入a'))
-  if(a % 2 == 1){
+<script id="ch0104/04" type="xx">
+  var str = prompt()
+  var charCode = str.charCodeAt(0)
+
+  if (charCode % 2 == 0) {
     console.log('YES')
   } else {
-  console.log('NO') 
-}
+    console.log('NO')
+  }
 </script>
 
 
@@ -294,6 +296,24 @@ console.log(a)
 </script>
 
 
+<!-- 
+  if (a % 3 == 0 || a % 7 == 0 || a % 5 == 0) {
+  if (a % 3 == 0) {
+    console.log(3)
+  }
+
+  if (a % 5 == 0) {
+    console.log(5)
+  }
+
+  if (a % 7 == 0) {
+    console.log(7)
+  }
+} else {
+  console.log('n')
+} 
+-->
+
 <script id="ch0104/10" type="xx">
   var a = Number(prompt('请输入语文成绩'))
   var b = Number(prompt('请输入数学成绩'))
@@ -303,6 +323,37 @@ console.log(a)
   console.log('0') 
 }
 </script>
+
+
+<!-- 
+  <script id="ch0104/10">
+  var a = Number(prompt())
+  var b = Number(prompt())
+  var c = Number(prompt())
+  var d = Number(prompt())
+
+  var count = 0
+
+  if (a < 60) {
+    count = count + 1
+  }
+  if (b < 60) {
+    count = count + 1
+  }
+  if (c < 60) {
+    count = count + 1
+  }
+  if (d < 60) {
+    count = count + 1
+  }
+
+  if (count == 2) {
+    console.log('1')
+  } else {
+    console.log('0')
+  }
+</script> 
+-->
 
 
 <script id="ch0104/11" type="xx">
