@@ -17,7 +17,7 @@ console.log((a + b) * c)
   var a = Number(prompt('请输入a'))
   var b = Number(prompt('请输入a'))
   var c = Number(prompt('请输入c'))
-  console.log((a + b) / c)
+  console.log(Math.trunc((a + b) / c))
   </script>
 
 
@@ -26,7 +26,7 @@ console.log((a + b) * c)
   var b = Number(prompt('请输入除数（除数非零）'))
   var c = a / b
   var d = a % b
-  console.log(c)
+  console.log(Math.trunc(c))
   console.log(d)
 </script>
 
@@ -42,18 +42,18 @@ console.log((a + b) * c)
 <script id="ch0103/06" type="xx">
 var a = Number(prompt('请输入甲流确诊'))
 var b = Number(prompt('请输入甲流死亡数'))
-var c = b / a
-console.log('甲流死亡率是' + c.toFixed(3) +'\%')
+var c = b / a * 100
+console.log( c.toFixed(3) + '%' )
 </script>
 
 
-<script id="ch0103/07" type="xx" >
+<script id="ch0103/07" type="xx">
   var x = Number(prompt('请输入x'))
   var a = Number(prompt('请输入a'))
   var b = Number(prompt('请输入b'))
   var c = Number(prompt('请输入c'))
   var d = Number(prompt('请输入d'))
-  var e = a * x * x * x + b * x * x +c * x + d
+  var e = a * x * x * x + b * x * x + c * x + d
   console.log(e.toFixed(7))
   </script>
 
@@ -65,14 +65,12 @@ console.log(c.toFixed(5))
 </script>
 
 
-<script id="ch0103/09" type="xx" >
+<script id="ch0103/09" >
  var r = Number(prompt('请输入圆的半径'))
  var a = 2 * r
  var b = 2 * 3.15159 * r
  var c = 3.14159 * r * r
- console.log(a.toFixed(4))
- console.log(b.toFixed(4))
- console.log(c.toFixed(4))
+ console.log(a.toFixed(4),b.toFixed(4),c.toFixed(4))
  </script>
 
 
@@ -83,11 +81,10 @@ var R = 1 / (1 / r1 + 1 / r2)
 console.log(R.toFixed(2))
 </script>
 
-<script id="ch0103/11" type="xx">
+<script id="ch0103/11" >
   var a = Number(prompt('请输入a'))
   var b = Number(prompt('请输入b'))
-  var k = a / b
-  var r = a - (b * k)
+  var r = a % b
   console.log(r)
 </script>
 
@@ -99,14 +96,7 @@ console.log(R.toFixed(2))
 </script>
 
 
-<script id="ch0103/12" type="xx" >
-  var r = Number(prompt('请输入球半径'))
-  var v = 4 / 3 * 3.14 * r * r *r
-  console.log(v.toFixed(2))
-</script>
-
-
-<script id="ch0103/13" >
+<script id="ch0103/13" type="xx">
   var a = Number(prompt('请输入球一个三位数'))
   var ge = a % 10
   var shi = (a - a % 10) / 10 % 10
@@ -115,20 +105,20 @@ console.log(R.toFixed(2))
 </script>
 
 
-<script id="ch0103/14" type="xx">
+<script id="ch0103/14" >
   var h = Number(prompt('小圆桶的深'))
   var r = Number(prompt('小圆桶的底面半径'))
   var a = 20 *1000 / (3.14159 * r * r * h)
-  console.log(a.toFixed(0))
+  console.log(Math.ceil(a))
 </script>
 
 
-<script id="ch0103/15" type="xx">
+<script id="ch0103/15" >
   var n = Number(prompt('请输入n'))
   var x = Number(prompt('请输入x'))
   var y = Number(prompt('请输入y'))
-  var a = n - y / x
-  console.log(a.toFixed(0))
+  var a = n - Math.ceil(y / x)
+  console.log(a)
 </script>
 
 
