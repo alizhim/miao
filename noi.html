@@ -396,18 +396,17 @@ console.log(a)
 </script>
 
 
-<script id="ch0104/14" >
+<script id="ch0104/14" type="xx">
   var a = Number(prompt('请输入重量'))
-  var b = Number(prompt('请输入是否加急'))
-  if(a >= 1000 ) {
-    var money = 8 + Math.ceil((a - 1000) / 500 * 4)
+  var b = prompt('请输入是否加急')
+  var money = 0
+  if(a > 1000 ) {
+     money = 8 + Math.ceil((a - 1000) / 500) * 4
   } else {
-   var money = 8 } 
-  if(b == y) {
-    var money = money + 8
-  } else {
-    var money = money + 0
-  }
+    money = 8 } 
+  if(b == 'y') {
+     money = money + 5
+  } 
   console.log(money)
 </script>
 
@@ -418,12 +417,10 @@ console.log(a)
   var c = Number(prompt('请输入c'))
   if(a > b && a > c ){
     console.log(a)
-  } else {
-    if(b > a && b > c ) {
+  } else if(b > a && b > c ) {
       console.log(b)
-    } if(c > a && c > b) {
+    } else if(c > a && c > b) {
   console.log(c) }
-}
 </script>
 
 
@@ -457,13 +454,25 @@ console.log(a)
 </script>
 
 
-<script id="ch0104/19"  type="?">
+<script id="ch0104/19"  >
   var x = Number(prompt('请输入x'))
   var y = Number(prompt('请输入y'))
-  if( x >= -1 && x <= 1 && y >= -1 && y <= 1 ){
-    console.log('yes')
+  var operator = prompt('请输入y')
+  if ( operator == '+' ) {
+    console.log(a + b)
+  } else if ( operator == '-' ) {
+  console.log('a - b') 
+  } else if ( operator == '*' ) {
+  console.log('a * b') 
+  } else if ( operator == '/' ) {
+   if (b == 0) {
+    console.log('Divided by zero!')
+   } else {
+    console.log(a / b)
+   }
   } else {
-  console.log('no') }
+    console.log('Invalid operator!')
+  }
 </script>
 
 
