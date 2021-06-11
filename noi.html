@@ -744,7 +744,7 @@ while (count < 12) {
 
 
 
-<script id="ch0105/16" type="xx">
+<script id="ch0105/16"  type="xx">
   var n = Number(prompt('请输入n'))
   var k = Number(prompt('请输入k'))
   var price = 200
@@ -764,30 +764,27 @@ while (count < 12) {
 
 
 <script id="ch0105/17" type="xx">
-  var n = Number(prompt('请输入n'))
+  var a = 1
+  var b = 1
+  var total
   var k = Number(prompt('请输入k'))
-  var price = 200
-  var money = 0
-  var count = 1
-  while (price > money && count <= 20) {
-    price = price * (1 + k / 100)
-    money = money + n
-    count = count + 1
-  }
-  if (count <= 20){
-    console.log(count)
-  } else {
-  console.log('Impossible')
-  }
+ for (i = 3; i <= k; i++) {
+  total = a + b
+  a = b
+  b = total
+ }
+ console.log(total)
 </script>
 
 
-<script id="ch0105/18" type="?">
-  var n = Number(prompt('请输入n'))
+<script id="ch0105/18" >
+  var n = Number(prompt('请输入屋顶数'))
   for (count = 0; count < n; count = count + 1) {
    var x = Number(prompt('请输入x'))
    var y = Number(prompt('请输入y'))
-   if (x - y > 0.05)
+   var p = Number(prompt('请输入人数'))
+   var line = Math.sqrt(1.0 * x * x + 1.0 * y * y)
+   
   }
 </script>
 
