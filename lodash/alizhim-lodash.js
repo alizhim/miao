@@ -1,4 +1,4 @@
-var damiao = function () {
+var alizhim = function () {
   function foreach(array, fn) {
     for (var i = 0; i < array.length; i++) {
       fn(array[i], i, array)
