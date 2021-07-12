@@ -18,8 +18,18 @@ var alizhim = function () {
     }
     return result
   }
+  function filter(arr, fn) {
+    var result = []
+    for (var i = 0; i < arr.length; i++) {
+      if (fn(arr[i])) {
+        result.push(arr[i])
+      }
+    }
+    return result
+  }
   return {
     forEach: forEach,
-    concat: concat
+    concat: concat,
+    filter:filter
   }
 }()
