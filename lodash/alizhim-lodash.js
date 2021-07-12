@@ -18,49 +18,82 @@ var alizhim = function () {
     }
     return result
   }
-  function filter (arr, fn) {
+  function filter (arr, predicate) {
     var result = []
     for (var i = 0; i < arr.length; i++) {
-      if (fn(arr[i])) {
+      if (predicate(arr[i])) {
         result.push(arr[i])
       }
     }
     return result
   }
-  function once (fn) {
+  function once (predicate) {
     var done = false
     return function () {
       done = true
-      return fn.apply(this, arguments)
+      return predicate.apply(this, arguments)
 
     }
   }
-  var map = (array,fn) => {
+  var map = (array,predicate) => {
     var result = []
     for (let value of array) {
-      result.push(fn (value))
+      result.push(predicate (value))
     }
     return result
   }
-  var every = (array,fn) => {
+  var every = (array,predicate) => {
     var result = true
     for (let value of array) {
-      result = fn (value)
+      result = predicate (value)
           if (!result) {
             break
           }
   ``}
   return result 
   }
-  var some = (array,fn) => {
+  var some = (array,predicate) => {
     var result = true
     for (let value of array) {
-      result = fn(value)
+      result = predicate(value)
           if (result) {
             break
           }
     }
   return result 
+  }
+  function sum(array) {
+    total = 0
+    for (var i = 0; i < array.length; i++) {
+      total += array[i]
+    }
+    return total
+  }
+  function chunk (array, size) {
+    size = Math.max(size, 0)
+    const length = array == null ? 0 : array.length
+    if (!length || size < 1) {
+      return []
+    }
+    let index = 0
+    let resIndex = 0
+    const result = new Array(Math.ceil(length / size))
+  
+    while (index < length) {
+      result[resIndex++] = slice(array, index, (index += size))
+    }
+    return result
+  }
+  function fill(array, value, start, end) {
+    var length = array == null ? 0 : array.length
+    if (!length) {
+      return []
+    }
+    if (start && typeof start != 'number' && isIterateeCall(array, value, start)) {
+      start = 0;
+      end = length;
+    }
+    return baseFill(array, value, start, end);
   }
   return {
     forEach: forEach,
@@ -70,5 +103,8 @@ var alizhim = function () {
     map: map,
     every: every,
     some: some,
+    sum: sum,
+    chunk: chunk,
+    fill: fill
   }
 }()
