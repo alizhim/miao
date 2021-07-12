@@ -18,10 +18,10 @@ var alizhim = function () {
     }
     return result
   }
-  function filter (arr, function) {
+  function filter (arr, fn) {
     var result = []
     for (var i = 0; i < arr.length; i++) {
-      if (function(arr[i])) {
+      if (fn(arr[i])) {
         result.push(arr[i])
       }
     }
@@ -35,27 +35,27 @@ var alizhim = function () {
 
     }
   }
-  var map = (array,function) => {
+  var map = (array,fn) => {
     var result = []
     for (let value of array) {
-      result.push(function (value))
+      result.push(fn (value))
     }
     return result
   }
-  var every = (array,function) => {
+  var every = (array,fn) => {
     var result = true
     for (let value of array) {
-      result = function (value)
+      result = fn (value)
           if (!result) {
             break
           }
   ``}
   return result 
   }
-  var some = (array,function) => {
+  var some = (array,fn) => {
     var result = true
     for (let value of array) {
-      result = function (value)
+      result = fn(value)
           if (result) {
             break
           }
