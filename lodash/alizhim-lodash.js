@@ -6,21 +6,20 @@ var alizhim = function () {
     return array
   }
   function concat(arr,...arg) {
-    let result = arr;
+    let result = arr
     for(let item of arg){
         if(Array.isArray(item)){
             for(let subitem of item){
-                result.push(subitem);
+                result.push(subitem)
             }
         }else{
-            result.push(item);
+            result.push(item)
         }
     }
-    return result;
-}
-module.exports = concat;
+    return result
+  }
   return {
     forEach: forEach,
     concat: concat
   }
-}
+}()
