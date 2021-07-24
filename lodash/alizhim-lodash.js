@@ -84,18 +84,6 @@ var alizhim = function () {
     }
     return result
   }
-  function fill(array, value, start, end) {
-    var length = array == null ? 0 : array.length
-    if (!length) {
-      return []
-    }
-    if (start && typeof start != 'number' && isIterateeCall(array, value, start)) {
-      start = 0;
-      end = length;
-    }
-    return baseFill(array, value, start, end);
-  }
-
   function slice(array, start, end) {
     let length = array == null ? 0 : array.length
      // 如果array为null，length为0，否则取array.length
@@ -144,12 +132,60 @@ var alizhim = function () {
     return -1
   }
   function lastIndexOf(array, value, fromIndex = array.length - 1) {
-    for (let i = array.length - 1; i >= 0; i--) {
+    for (let i = fromIndex; i >= 0; i--) {
       if (array[i] === value) {
         return i
       }
     }
     return -1
+  }
+  function fill(ary, value, start = 0, end = ary.length - 1) {
+    for (let i = start; i < end; i++) {
+      ary[i] = value
+    }
+    return ary
+  }
+  function range(start, end, step) {
+    if (arguments.length === 1) {
+      end = start
+      start = 0
+    }
+    if (step === undefined) {
+      if (end > start) {
+        step = 1
+      } else {
+        step = -1
+      }
+    }
+    let result = []
+    if (end > start) {
+      if (step < 0) {
+        return result
+      }
+      for (let i = start; i < end; i += step) {
+        result.push(i)
+      }
+    } else {
+      if (step > 0) {
+        return result
+      }
+      for (let i = start; i > end; i += step) {
+        result.push(i)
+      }
+    }
+    return result
+  }
+  function reverse(ary) {
+    let i = 0
+    let j = ary.length - 1
+    while (i < j) {
+      let t = ary[i]
+      ary[i] = ary[j]
+      ary[j] = t
+      i++
+      j--
+    }
+    return ary
   }
   return {
     forEach: forEach,
@@ -161,9 +197,11 @@ var alizhim = function () {
     some: some,
     sum: sum,
     chunk: chunk,
-    fill: fill,
-    slice: slice
+    slice: slice,
     indexOf: indexOf,
     lastIndexOf: lastIndexOf,
+    fill: fill,
+    range: range,
+    reverse: reverse,
   }
 }()
