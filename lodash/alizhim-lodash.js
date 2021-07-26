@@ -18,7 +18,7 @@ var alizhim = function () {
     }
     return result
   }
-  function filter (arr, predicate) {
+  function filter (arr, predicate=_.identity) {
     var result = []
     for (var i = 0; i < arr.length; i++) {
       if (predicate(arr[i])) {
@@ -139,7 +139,7 @@ var alizhim = function () {
     }
     return -1
   }
-  function fill(ary, value, start = 0, end = ary.length - 1) {
+  function fill(ary, value, start = 0, end = ary.length) {
     for (let i = start; i < end; i++) {
       ary[i] = value
     }
@@ -187,6 +187,22 @@ var alizhim = function () {
     }
     return ary
   }
+  function compact(ary) {
+    let result = []
+    for (let i = 0; i < ary.length; i++) {
+      if (ary[i]) {
+        result.push(ary[i])
+      }
+    }
+    return result
+  }
+  function drop(ary, n = 1) {
+    let result = []
+    for (let i = n; i < ary.length; i++) {
+      result.push(ary[i])
+    }
+    return result
+  }
   return {
     forEach: forEach,
     concat: concat,
@@ -203,5 +219,7 @@ var alizhim = function () {
     fill: fill,
     range: range,
     reverse: reverse,
+    compact: compact,
+    drop: drop,
   }
 }()
