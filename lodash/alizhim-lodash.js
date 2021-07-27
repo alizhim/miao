@@ -218,6 +218,29 @@ var alizhim = function () {
     }
     return result
   }
+  function difference(ary, ...value) {
+    let result = []
+    let cur = concat(...value)
+    for (let i = 0; i < ary.length; i++) {
+      if (cur.indexOf(ary[i]) === -1) {
+        result.push(ary[i])
+      }
+    }
+    return result
+  }
+  function head(ary) {
+    if (arguments.length === 0) {
+      return undefined
+    }
+    return ary[0]
+  }
+  function initial(ary) {
+    let result = []
+    for (let i = 0; i < ary.length - 1; i++) {
+      result.push(ary[i])
+    }
+    return result
+  }
   return {
     forEach: forEach,
     concat: concat,
@@ -237,5 +260,8 @@ var alizhim = function () {
     compact: compact,
     drop: drop,
     dropRight: dropRight,
+    difference: difference,
+    head: head,
+    initial: initial,
   }
 }()
