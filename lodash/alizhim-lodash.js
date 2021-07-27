@@ -157,6 +157,11 @@ var alizhim = function () {
         step = -1
       }
     }
+    if (step === 0) {
+      for (let i = start; i < end; i++) {
+        result.push(i)
+      }
+    }
     let result = []
     if (end > start) {
       if (step < 0) {
@@ -203,6 +208,16 @@ var alizhim = function () {
     }
     return result
   }
+  function dropRight(ary, n = 1) {
+    let result = []
+    if (n > ary.length) {
+      return []
+    }
+    for (let i = 0; i < ary.length - n; i++) {
+      result.push(ary[i])
+    }
+    return result
+  }
   return {
     forEach: forEach,
     concat: concat,
@@ -221,5 +236,6 @@ var alizhim = function () {
     reverse: reverse,
     compact: compact,
     drop: drop,
+    dropRight: dropRight,
   }
 }()
