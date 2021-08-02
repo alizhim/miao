@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input[type='text'], textarea {
+      width: 300px;
+    }
+    label {
+      font-family: consolas;
+      cursor: pointer;
+    }
+    label input {
+      cursor: pointer;
+    }
+    em {
+      background-color: #9fcfff;
+      font-style: normal;
+    }
+    em:empty {
+      border-right: 1px dotted red;
+      margin-right: -1px;
+      background-color: transparent;
+    }
+    em:nth-of-type(even) {
+      background-color: #d5ebff;
+    }
+    section {
+      width: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+    section textarea, 
+    section pre {
+      line-height: 1.5;
+      display: block;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      border: 2px solid;
+      font-family: consolas;
+      font-size: 16px;
+      white-space: pre-wrap;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    section textarea {
+      position: relative;
+      z-index: 8;
+      background-color: transparent;
+    }
+    section pre {
+      top: 0;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    请输入正则表达式：
+    <label for=""><input type="checkbox" id="insensitive" onclick="run">i</label>
+    <label for=""><input type="checkbox" checked id="global" onclick="run">g</label>
+    <label for=""><input type="checkbox" id="multiline" onclick="run">m</label>
+    <br>
+    <input type="text" id="reg" onkeyup="run" value="fo.">
+    <br>
+    请输入内容:
+    <br>
+    <section>
+      <textarea name="" id="strInput" cols="30" rows="10" onkeyup="run">
+      forvahjdhvabarkdkbar  
+  fooffojfoo foz foa
+    dfjji foo foo for foz
+    dohgffiodhfl fox ofxoxox
+  fozzfozfoxoforoforsforfogfogfog
+  foofrffou
+      </textarea>
+      <pre id="result">
+      </pre>
+    </section>
+  </div>
+  <script>
+    function run() {
+      var regSource = reg.value
+      var flags = getFlags()
+      var re = new RegExp(regSource, flags)
+      console.log(re)
+      var str = strInput.value
+      var match
+      if (re.global) {
+        var resultHTML = ''
+        var lastIndex = re.lastIndex
+        while(match = re.exec(str)) {
+          resultHTML += str.slice(lastIndex, match.index)
+          resultHTML += '<em>' + match[0] + '</em>'
+          lastIndex = re.lastIndex
+        }
+        resultHTML += str.slice(lastIndex)
+        result.innerHTML = resultHTML
+      } else {
+        var resultHTML = ''
+        match = re.exec(str)
+        resultHTML += str.slice(0, match.index)
+        resultHTML += '<em>' + match[0] + '</em>'
+        resultHTML += str.slice(match[0].length + match.index)
+        result.innerHTML = resultHTML
+      }
+    }
+    run()
+    function getFlags() {
+      var flags = ''
+      if (insensitive.checked) {
+        flags += 'i'
+      }
+      if (global.checked) {
+        flags += 'g'
+      }
+      if (multiline.checked) {
+        flags += 'm'
+      }
+      return flags
+    }
+  </script>
+</body>
+</html>

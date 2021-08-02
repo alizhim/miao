@@ -157,15 +157,15 @@ var alizhim = function () {
         step = -1
       }
     }
-    if (step === 0) {
-      for (let i = start; i < end; i++) {
-        result.push(i)
-      }
-    }
     let result = []
     if (end > start) {
       if (step < 0) {
         return result
+      }
+      if (step = 0) {
+        for (i = start; i < end; i++) {
+          result.push(i)
+        }
       }
       for (let i = start; i < end; i += step) {
         result.push(i)
@@ -173,6 +173,11 @@ var alizhim = function () {
     } else {
       if (step > 0) {
         return result
+      }
+      if (step = 0) {
+        for (i = start; i > end; i++) {
+          result.push(i)
+        }
       }
       for (let i = start; i > end; i += step) {
         result.push(i)
