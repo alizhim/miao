@@ -246,6 +246,91 @@ var alizhim = function () {
     }
     return result
   }
+  function parseJson(str) {
+    let i = 0
+    return parseValue()
+    function parseValue() {
+      let c = str[i]
+      if (c === '[') {
+        return parseArray()
+      }
+      if (c === '{') {
+        return parseObject()
+      }
+      if (c === '"') {
+        return parseString()
+      }
+      if (c === 't') {
+        return parseTrue()
+      }
+      if (c === 'f') {
+        return parseFalse()
+      }
+      if (c === 'n') {
+        return parseNull()
+      }
+      return parseNumber
+    }
+    function parseTrue() {
+      i += 4
+      return true
+    }
+    function parseFalse() {
+      i += 5
+      return false
+    }
+    function parseNull() {
+      i += 4
+      return null
+    }
+    function parseString() {
+      i++ // 跳过当前双引号
+      let result = ''
+      while (str[i] !== '"') {
+        result += result[i]
+        i++
+      }
+      i++
+      return result
+    }
+    function parseArray() {
+      i++
+      let result = []
+      while (str[i] !== ']') {
+        let val = parseValue()
+        result.push(val)
+        if (str[i] == ',') {
+          i++
+        } else if (str[i] == ']') {
+          break
+        }
+      }
+      i++
+      return result
+    }
+    function parseObject() {
+      i++
+      let result = {}
+      while (str[i] !== '}') {
+        let key = parseString()
+        i++ // 跳过冒号
+        let val = parseValue()
+        result[key] = val
+        if (str[i] == ',') {
+          i++
+        }
+      }
+      return result
+    }
+    function parseNumber() {
+      let numStr = ''
+      while (str[i] >= '0' && str[i] <= '9') {
+        numStr += str[i]
+        i++
+      }
+      return Number(numStr)
+    }
+  }
   return {
     forEach: forEach,
     concat: concat,
@@ -268,5 +353,6 @@ var alizhim = function () {
     difference: difference,
     head: head,
     initial: initial,
+    parseJson: parseJson,
   }
 }()
