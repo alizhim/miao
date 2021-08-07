@@ -246,11 +246,21 @@ var alizhim = function () {
     }
     return result
   }
+  function flatten(ary) {
+    var res = []
+    for (var i = 0; i < ary.length; i++) {
+      result = result.concat(ary[i])
+    }
+    return res
+  }
+  function uniq(ary) {
+    return Array.from(new Set(ary))
+  }
   function parseJson(str) {
-    let i = 0
+    var i = 0
     return parseValue()
     function parseValue() {
-      let c = str[i]
+      var c = str[i]
       if (c === '[') {
         return parseArray()
       }
@@ -285,36 +295,33 @@ var alizhim = function () {
     }
     function parseString() {
       i++ // 跳过当前双引号
-      let result = ''
+      var result = ''
       while (str[i] !== '"') {
-        result += result[i]
-        i++
+        result += result[i++]
       }
       i++
       return result
     }
     function parseArray() {
       i++
-      let result = []
+      var result = []
       while (str[i] !== ']') {
-        let val = parseValue()
+        var val = parseValue()
         result.push(val)
         if (str[i] == ',') {
           i++
-        } else if (str[i] == ']') {
-          break
-        }
+        } 
       }
       i++
       return result
     }
     function parseObject() {
       i++
-      let result = {}
+      var result = {}
       while (str[i] !== '}') {
-        let key = parseString()
+        var key = parseString()
         i++ // 跳过冒号
-        let val = parseValue()
+        var val = parseValue()
         result[key] = val
         if (str[i] == ',') {
           i++
@@ -325,10 +332,32 @@ var alizhim = function () {
     function parseNumber() {
       let numStr = ''
       while (str[i] >= '0' && str[i] <= '9') {
-        numStr += str[i]
-        i++
+        numStr += str[i++]
       }
       return Number(numStr)
+    }
+  }
+  function jsonStringify(obj) {
+    let type = typeof obj
+    if (type !== "object" || type === null) {
+      if (/string|undefined|function/.test(type)) {
+        obj = '"' + obj + '"';
+      }
+      return String(obj);
+    } else {
+      let json = []
+      arr = (obj && obj.constructor === Array);
+      for (let k in obj) {
+        let v = obj[k];
+        let type = typeof v;
+        if (/string|undefined|function/.test(type)) {
+          v = '"' + v + '"';
+        } else if (type === "object") {
+          v = jsonStringify(v);
+        }
+        json.push((arr ? "" : '"' + k + '":') + String(v));
+      }
+      return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}")
     }
   }
   return {
@@ -354,5 +383,8 @@ var alizhim = function () {
     head: head,
     initial: initial,
     parseJson: parseJson,
+    flatten: flatten,
+    uniq: uniq,
+    jsonStringify: jsonStringify,
   }
 }()
