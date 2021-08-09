@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .sun, .earth, .moon {
+      display: block;
+      border-radius: 9999px;
+      position: absolute;
+      background-color: red;
+      width: 100px;
+      height: 100px;
+      transform: translate(-50% -50%);
+    }
+    .earth {
+      width: 60px;
+      height: 60px;
+      background-color: greenyellow;
+    }
+    .moon {
+      width: 30px;
+      height: 30px;
+      background-color: gold;
+    }
+    section {
+      width: 500px;
+      height: 500px;
+      border: 1px solid red ;
+      margin: 100px auto;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="sun"></div>
+    <div class="earth"></div>
+    <div class="moon"></div>
+  </section>
+  <script>
+    var sun = document.querySelector('.sun')
+    var earth = document.querySelector('.earth')
+    var moon = document.querySelector('.moon')
+    var angle1 = 0
+    var angle2 = 0
+    var angle3 = 0
+    requestAnimationFrame(function animate(time) {
+      angle1 = time * 0.0005
+      angle2 = time * 0.002
+      angle3 = time * 0.006
+      var x1 = Math.sin(angle1) * 250
+      var y1 = Math.cos(angle1) * 250
+      sun.style.left = x1 + 'px'
+      sun.style.top = y1 + 'px'
+      var x2 = Math.sin(angle1) * 130
+      var y2 = Math.cos(angle1) * 130
+      earth.style.left = x2 + 'px'
+      earth.style.top = y2 + 'px'
+      var x3 = Math.sin(angle1) * 60
+      var y3 = Math.cos(angle1) * 60
+      moon.style.left = x3 + 'px'
+      moon.style.top = y3 + 'px'
+      requestAnimationFrame(animate)
+    })
+  </script>
+</body>
+</html>
