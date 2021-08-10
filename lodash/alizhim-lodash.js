@@ -247,11 +247,7 @@ var alizhim = function () {
     return result
   }
   function flatten(ary) {
-    var res = []
-    for (var i = 0; i < ary.length; i++) {
-      result = result.concat(ary[i])
-    }
-    return res
+    return [].concat(...ary)
   }
   function uniq(ary) {
     return Array.from(new Set(ary))
@@ -259,24 +255,25 @@ var alizhim = function () {
   function parseJson(str) {
     var i = 0
     return parseValue()
+
     function parseValue() {
       var c = str[i]
-      if (c === '[') {
+      if (c == '[') {
         return parseArray()
       }
-      if (c === '{') {
+      if (c == '{') {
         return parseObject()
       }
-      if (c === '"') {
+      if (c == '"') {
         return parseString()
       }
-      if (c === 't') {
+      if (c == 't') {
         return parseTrue()
       }
-      if (c === 'f') {
+      if (c == 'f') {
         return parseFalse()
       }
-      if (c === 'n') {
+      if (c == 'n') {
         return parseNull()
       }
       return parseNumber
@@ -296,16 +293,16 @@ var alizhim = function () {
     function parseString() {
       i++ // 跳过当前双引号
       var result = ''
-      while (str[i] !== '"') {
+      while (str[i] != '"') {
         result += result[i++]
       }
       i++
       return result
     }
     function parseArray() {
-      i++
+      i++  //skip [
       var result = []
-      while (str[i] !== ']') {
+      while (str[i] != ']') {
         var val = parseValue()
         result.push(val)
         if (str[i] == ',') {
@@ -318,7 +315,7 @@ var alizhim = function () {
     function parseObject() {
       i++
       var result = {}
-      while (str[i] !== '}') {
+      while (str[i] != '}') {
         var key = parseString()
         i++ // 跳过冒号
         var val = parseValue()
