@@ -18,15 +18,6 @@ var alizhim = function () {
     }
     return result
   }
-  function filter (arr, predicate=_.identity) {
-    var result = []
-    for (var i = 0; i < arr.length; i++) {
-      if (predicate(arr[i])) {
-        result.push(arr[i])
-      }
-    }
-    return result
-  }
   function once (predicate) {
     var done = false
     return function () {
@@ -35,10 +26,57 @@ var alizhim = function () {
 
     }
   }
-  var map = (array,predicate) => {
-    var result = []
-    for (let value of array) {
-      result.push(predicate (value))
+  function property(prop) {
+    return function (obj) {
+      return obj[prop]
+    }
+  }
+  function matches(obj) {
+    return function (src) {
+      for (let key in obj) {
+        if (obj[key] !== src[key]) {
+          return false
+        }
+      }
+      return true
+    }
+  }
+  function matchesProperty(ary) {
+      let key = ary[0]
+    let val = ary[1]
+    return function (obj) {
+      return obj[key] == val
+    }
+  }
+  function map(collection, mapper) {
+    if (typeof mapper == 'string') {
+      mapper = property(mapper)
+    }
+    if (Array.isArray(mapper)) {
+      mapper = matchesProperty(...mapper)
+    }
+    if (typeof mapper == 'object') {
+      mapper = matches(mapper)
+    }
+    let result = []
+    for (let key in collection) {
+      result.push(mapper(collection[key], key, collection))
+    }
+    return result
+  }
+  function filter(collection, predicate) {
+    if (typeof predicate == 'string') {
+      mapper = property(predicate)
+    }
+    if (Array.isArray(predicate)) {
+      mapper = matchesProperty(...predicate)
+    }
+    if (typeof predicate == 'object') {
+      mapper = matches(predicate)
+    }
+    let result = []
+    if (predicate(collection[key], key, collection) == true) {
+      result.push(collection[key])
     }
     return result
   }
@@ -69,18 +107,14 @@ var alizhim = function () {
     }
     return total
   }
-  function chunk (array, size) {
-    size = Math.max(size, 0)
-    const length = array == null ? 0 : array.length
-    if (!length || size < 1) {
+  function chunk(array, size = 1) {
+    if (array.length < 1) {
       return []
     }
-    let index = 0
-    let resIndex = 0
-    const result = new Array(Math.ceil(length / size))
-  
-    while (index < length) {
-      result[resIndex++] = slice(array, index, (index += size))
+    size = size > 0 ? size : 1
+    let result = []
+    for (let i = 0; i < array.length; i += 5) {
+      result.push(array.slice(i, i + size))
     }
     return result
   }
@@ -383,5 +417,8 @@ var alizhim = function () {
     flatten: flatten,
     uniq: uniq,
     jsonStringify: jsonStringify,
+    matches: matches,
+    property: property,
+    matchesProperty: matchesProperty,
   }
 }()

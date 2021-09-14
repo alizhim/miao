@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="grid"></div>
+  <button id="next">Next generation</button>
+  <button id="run">Auto run</button>
+  <script>
+    const width = 30
+    const height = 15
+    let gridNode = document.querySelector('#grid')
+    let checkboxes = []
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        let box = document.createElement("input")
+        box.type = "checkbox"
+        gridNode.appendChild(box)
+        checkboxes.push(box)
+    }
+    gridNode.appendChild(document.createElement("br"))
+  }
+
+  </script>
+</body>
+</html>
