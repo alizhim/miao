@@ -5,6 +5,7 @@ var alizhim = function () {
     }
     return array
   }
+
   function concat (arr,...arg) {
     let result = arr
     for(let item of arg){
@@ -18,6 +19,7 @@ var alizhim = function () {
     }
     return result
   }
+
   function once (predicate) {
     var done = false
     return function () {
@@ -26,11 +28,13 @@ var alizhim = function () {
 
     }
   }
+
   function property(prop) {
     return function (obj) {
       return obj[prop]
     }
   }
+
   function matches(obj) {
     return function (src) {
       for (let key in obj) {
@@ -41,6 +45,7 @@ var alizhim = function () {
       return true
     }
   }
+
   function matchesProperty(ary) {
       let key = ary[0]
     let val = ary[1]
@@ -48,6 +53,7 @@ var alizhim = function () {
       return obj[key] == val
     }
   }
+
   function map(collection, mapper) {
     if (typeof mapper == 'string') {
       mapper = property(mapper)
@@ -64,6 +70,7 @@ var alizhim = function () {
     }
     return result
   }
+
   function filter(collection, predicate) {
     if (typeof predicate == 'string') {
       mapper = property(predicate)
@@ -80,6 +87,7 @@ var alizhim = function () {
     }
     return result
   }
+
   var every = (array,predicate) => {
     var result = true
     for (let value of array) {
@@ -90,6 +98,7 @@ var alizhim = function () {
   ``}
   return result 
   }
+
   var some = (array,predicate) => {
     var result = true
     for (let value of array) {
@@ -100,6 +109,7 @@ var alizhim = function () {
     }
   return result 
   }
+
   function sum(array) {
     total = 0
     for (var i = 0; i < array.length; i++) {
@@ -107,17 +117,19 @@ var alizhim = function () {
     }
     return total
   }
+
   function chunk(array, size = 1) {
     if (array.length < 1) {
       return []
     }
     size = size > 0 ? size : 1
     let result = []
-    for (let i = 0; i < array.length; i += 5) {
+    for (let i = 0; i < array.length; i += size) {
       result.push(array.slice(i, i + size))
     }
     return result
   }
+
   function slice(array, start, end) {
     let length = array == null ? 0 : array.length
      // 如果array为null，length为0，否则取array.length
@@ -157,6 +169,7 @@ var alizhim = function () {
     // 遍历数组result，并将原数组array中index+start对应的元素添加到result数组中index对应的位置
     return result
   }
+
   function indexOf(array, value, fromIndex = 0) {
     for (let i = fromIndex ; i < array.length; i++) {
       if (array[i] === value) {
@@ -165,6 +178,7 @@ var alizhim = function () {
     }
     return -1
   }
+
   function lastIndexOf(array, value, fromIndex = array.length - 1) {
     for (let i = fromIndex; i >= 0; i--) {
       if (array[i] === value) {
@@ -173,12 +187,14 @@ var alizhim = function () {
     }
     return -1
   }
+
   function fill(ary, value, start = 0, end = ary.length) {
     for (let i = start; i < end; i++) {
       ary[i] = value
     }
     return ary
   }
+
   function range(start, end, step) {
     if (arguments.length === 1) {
       end = start
@@ -219,6 +235,7 @@ var alizhim = function () {
     }
     return result
   }
+
   function reverse(ary) {
     let i = 0
     let j = ary.length - 1
@@ -231,6 +248,7 @@ var alizhim = function () {
     }
     return ary
   }
+
   function compact(ary) {
     let result = []
     for (let i = 0; i < ary.length; i++) {
@@ -240,6 +258,7 @@ var alizhim = function () {
     }
     return result
   }
+
   function drop(ary, n = 1) {
     let result = []
     for (let i = n; i < ary.length; i++) {
@@ -247,6 +266,7 @@ var alizhim = function () {
     }
     return result
   }
+
   function dropRight(ary, n = 1) {
     let result = []
     if (n > ary.length) {
@@ -257,6 +277,7 @@ var alizhim = function () {
     }
     return result
   }
+
   function difference(ary, ...value) {
     let result = []
     let cur = concat(...value)
@@ -267,12 +288,14 @@ var alizhim = function () {
     }
     return result
   }
+
   function head(ary) {
     if (arguments.length === 0) {
       return undefined
     }
     return ary[0]
   }
+
   function initial(ary) {
     let result = []
     for (let i = 0; i < ary.length - 1; i++) {
@@ -280,12 +303,15 @@ var alizhim = function () {
     }
     return result
   }
+
   function flatten(ary) {
     return [].concat(...ary)
   }
+
   function uniq(ary) {
     return Array.from(new Set(ary))
   }
+
   function parseJson(str) {
     var i = 0
     return parseValue()
@@ -368,6 +394,7 @@ var alizhim = function () {
       return Number(numStr)
     }
   }
+
   function jsonStringify(obj) {
     let type = typeof obj
     if (type !== "object" || type === null) {
@@ -391,6 +418,53 @@ var alizhim = function () {
       return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}")
     }
   }
+
+
+  function identity(val) {
+    return val
+  }
+
+  const identity = it => it
+
+  function groupBy(array, predicate = identity) {
+    let result = {}
+    for (let i = 0; i < array.length; i++) {
+      let key = predicate(array[i], i, array)
+      if (!Array.isArray(result[key])) {
+        result[key] = []
+      }
+      result[key].push(array[i])
+    }
+    return result
+  }
+
+  function sumBy(array, predicate = identity) {
+    let sum = 0
+    for (let i = 0; i < array.length; i++) {
+      sum += predicate(array[i], i, array)
+    }
+    return sumBy
+  }
+
+  function mapValues(obj, mapper) {
+    let result = {}
+    for (let key in obj) {
+      let val = obj[key]
+      result[key] = mapper(val, key, obj)
+    }
+    return result
+  }
+
+  function mapKeys(obj, mapper) {
+    let result = {}
+    for (let key in obj) {
+      let val = obj[key]
+      result[mapper(val, key, obj)] = val
+    }
+    return result
+  }
+
+
   return {
     forEach: forEach,
     concat: concat,
@@ -420,5 +494,9 @@ var alizhim = function () {
     matches: matches,
     property: property,
     matchesProperty: matchesProperty,
+    groupBy: groupBy,
+    identity: identity,
+    sumBy: sumBy,
+    mapValues: mapValues,
   }
 }()
