@@ -424,9 +424,9 @@ var alizhim = function () {
     return val
   }
 
-  const identity = it => it
+  
 
-  function groupBy(array, predicate = identity) {
+  function groupBy(array, predicate = it => it) {
     let result = {}
     for (let i = 0; i < array.length; i++) {
       let key = predicate(array[i], i, array)
@@ -438,7 +438,7 @@ var alizhim = function () {
     return result
   }
 
-  function sumBy(array, predicate = identity) {
+  function sumBy(array, predicate = it => it) {
     let sum = 0
     for (let i = 0; i < array.length; i++) {
       sum += predicate(array[i], i, array)
