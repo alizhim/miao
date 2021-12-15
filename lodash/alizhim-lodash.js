@@ -464,7 +464,17 @@ var alizhim = function () {
     return result
   }
 
-
+  function differenceBy(array, ...args) {
+    if (isArray(args[args.length - 1])) {
+      return difference(array, ...args)
+    }
+    let callback = iteratee(args.pop())
+    let group = concat([], ...args)
+    group = map(group, callback)
+    return filter(array, function (value) {
+      return includes(group, callback(value)) == false
+    })
+}
   return {
     forEach: forEach,
     concat: concat,
@@ -498,5 +508,7 @@ var alizhim = function () {
     identity: identity,
     sumBy: sumBy,
     mapValues: mapValues,
+    mapKeys: mapKeys,
+    differenceBy: differenceBy,
   }
 }()
